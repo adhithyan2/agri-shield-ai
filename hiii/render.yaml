@@ -1,6 +1,5 @@
-preBuildCommand: cd backend && npm install
-buildCommand: npm run build
-startCommand: cd backend && npm start
+buildCommand: cd hiii/backend && npm install
+startCommand: cd hiii/backend && npm start
 env:
   MONGODB_URI:
     syn: false
