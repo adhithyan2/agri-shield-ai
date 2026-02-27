@@ -1,16 +1,9 @@
-services:
-  - type: web
-    name: agri-shield-ai
-    env: node
-    region: oregon
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
-    envVars:
-      - key: MONGODB_URI
-        value: ${MONGODB_URI}
-      - key: JWT_SECRET
-        value: agrishield_ai_secret_2026
-      - key: WEATHER_API_KEY
-        value: 09043d37fbaf47dc1c785458c7385a7c
-      - key: PORT
-        value: 10000
+preBuildCommand: cd backend && npm install
+buildCommand: npm run build
+startCommand: cd backend && npm start
+env:
+  MONGODB_URI:
+    syn: false
+  JWT_SECRET: agrishield_ai_secret_2026
+  WEATHER_API_KEY: 09043d37fbaf47dc1c785458c7385a7c
+  PORT: 10000
