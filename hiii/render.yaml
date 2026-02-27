@@ -1,5 +1,5 @@
-buildCommand: cd hiii/backend && npm install
-startCommand: cd hiii/backend && npm start
+buildCommand: npm install --prefix hiii/backend
+startCommand: npm start --prefix hiii/backend
 env:
   MONGODB_URI:
     syn: false
