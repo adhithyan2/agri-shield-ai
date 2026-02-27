@@ -1,0 +1,12 @@
+{
+  "name": "agri-shield-ai-frontend",
+  "version": "1.0.0",
+  "description": "AgriShield AI Frontend",
+  "scripts": {
+    "start": "npx serve frontend"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.1",
+    "i18next": "^23.7.6"
+  }
+}

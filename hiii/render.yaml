@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: agrishield-ai
+    env: node
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        value: ${MONGODB_URI}
+      - key: JWT_SECRET
+        value: agrishield_ai_secret_2026
+      - key: WEATHER_API_KEY
+        value: 09043d37fbaf47dc1c785458c7385a7c
+      - key: PORT
+        value: 10000

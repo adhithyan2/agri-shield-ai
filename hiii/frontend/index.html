@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriShield AI - Smart Climate & Market Intelligence</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success" id="mainNav">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-leaf me-2"></i>
+          <span data-i18n="appName">AgriShield AI</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto" id="navLinks">
+          </ul>
+          <div class="d-flex align-items-center">
+            <select class="form-select me-2" id="languageSelect" style="width: 120px;">
+              <option value="en">English</option>
+              <option value="ta">தமிழ்</option>
+              <option value="hi">हिन्दी</option>
+              <option value="te">తెలుగు</option>
+            </select>
+            <button class="btn btn-light" id="logoutBtn" style="display: none;">
+              <i class="fas fa-sign-out-alt"></i> <span data-i18n="logout">Logout</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="guest-banner" id="guestBanner" style="display: none;">
+      <i class="fas fa-info-circle"></i>
+      <span data-i18n="guestMode">Guest Mode Active</span>
+      <button class="btn btn-sm btn-warning ms-2" onclick="showLoginModal()" data-i18n="loginNow">Login Now</button>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column" id="sidebarLinks">
+            </ul>
+          </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="mainContent">
+        </main>
+      </div>
+    </div>
+
+    <button class="voice-assistant-btn" id="voiceBtn" title="Voice Assistant">
+      <i class="fas fa-microphone"></i>
+    </button>
+  </div>
+
+  <div class="modal fade" id="authModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" data-i18n="login">Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="authTabs">
+            <li class="nav-item">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#userLogin" data-i18n="userLogin">User Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#farmerLogin" data-i18n="farmerLogin">Farmer ID Login</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#signup" data-i18n="signup">Sign Up</button>
+            </li>
+          </ul>
+          <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="userLogin">
+              <form id="userLoginForm">
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="email">Email</label>
+                  <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="password">Password</label>
+                  <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100" data-i18n="login">Login</button>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="farmerLogin">
+              <form id="farmerLoginForm">
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="farmerId">Farmer ID</label>
+                  <input type="text" class="form-control" id="loginFarmerId" placeholder="TNK01-2026-4582" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100" data-i18n="login">Login</button>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="signup">
+              <form id="signupForm">
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="name">Name</label>
+                  <input type="text" class="form-control" id="signupName" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="email">Email</label>
+                  <input type="email" class="form-control" id="signupEmail" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="password">Password</label>
+                  <input type="password" class="form-control" id="signupPassword" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" data-i18n="role">Role</label>
+                  <select class="form-select" id="signupRole">
+                    <option value="farmer">Farmer</option>
+                    <option value="booth_agent">Booth Agent</option>
+                    <option value="super_admin">Super Admin</option>
+                  </select>
+                </div>
+                <div class="mb-3" id="villageSelectDiv" style="display: none;">
+                  <label class="form-label" data-i18n="village">Village</label>
+                  <select class="form-select" id="signupVillage">
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100" data-i18n="signup">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="farmerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" data-i18n="registerFarmer">Register Farmer</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="farmerForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label" data-i18n="name">Name</label>
+                <input type="text" class="form-control" id="farmerName" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label" data-i18n="village">Village</label>
+                <select class="form-select" id="farmerVillage" required>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label" data-i18n="landArea">Land Area (acres)</label>
+                <input type="number" class="form-control" id="farmerLandArea" step="0.1" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label" data-i18n="soilType">Soil Type</label>
+                <select class="form-select" id="farmerSoilType" required>
+                  <option value="clay">Clay</option>
+                  <option value="sandy">Sandy</option>
+                  <option value="loamy">Loamy</option>
+                  <option value="silty">Silty</option>
+                  <option value="peaty">Peaty</option>
+                  <option value="chalky">Chalky</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" data-i18n="cropHistory">Crop History (comma separated)</label>
+              <input type="text" class="form-control" id="farmerCropHistory" placeholder="Rice, Wheat, Cotton">
+            </div>
+            <div class="mb-3">
+              <label class="form-label" data-i18n="mobile">Mobile (Optional)</label>
+              <input type="tel" class="form-control" id="farmerMobile">
+            </div>
+            <button type="submit" class="btn btn-success w-100" data-i18n="register">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast" role="alert">
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto" data-i18n="notification">Notification</strong>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+      </div>
+      <div class="toast-body" id="toastBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

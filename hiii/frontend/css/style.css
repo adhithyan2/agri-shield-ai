@@ -1,0 +1,347 @@
+:root {
+  --primary-green: #2e7d32;
+  --light-green: #4caf50;
+  --dark-green: #1b5e20;
+  --accent-yellow: #ffc107;
+  --soil-brown: #795548;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.navbar {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.guest-banner {
+  background: linear-gradient(90deg, #ff9800, #ffc107);
+  color: #000;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.sidebar {
+  min-height: calc(100vh - 56px);
+  background: #fff;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar .nav-link {
+  color: #333;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin: 5px 10px;
+  transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover {
+  background-color: var(--light-green);
+  color: #fff;
+}
+
+.sidebar .nav-link.active {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+.sidebar .nav-link i {
+  margin-right: 10px;
+  width: 20px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background: var(--primary-green);
+  color: #fff;
+  border-radius: 15px 15px 0 0 !important;
+  font-weight: 600;
+}
+
+.btn-success {
+  background: var(--primary-green);
+  border: none;
+}
+
+.btn-success:hover {
+  background: var(--dark-green);
+}
+
+.voice-assistant-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary-green);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+  transition: all 0.3s;
+  z-index: 1000;
+}
+
+.voice-assistant-btn:hover {
+  transform: scale(1.1);
+  background: var(--dark-green);
+}
+
+.voice-assistant-btn.listening {
+  animation: pulse 1s infinite;
+  background: #f44336;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.weather-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.weather-card .temp {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.crop-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.score-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.score-high { background: linear-gradient(135deg, #4caf50, #2e7d32); }
+.score-medium { background: linear-gradient(135deg, #ff9800, #f57c00); }
+.score-low { background: linear-gradient(135deg, #f44336, #d32f2f); }
+
+.risk-badge {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.risk-high { background: #ffebee; color: #c62828; }
+.risk-medium { background: #fff3e0; color: #ef6c00; }
+.risk-low { background: #e8f5e9; color: #2e7d32; }
+
+.table-responsive {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table {
+  margin-bottom: 0;
+}
+
+table thead {
+  background: var(--primary-green);
+  color: #fff;
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+}
+
+.product-compare-card {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.product-compare-card:hover {
+  border-color: var(--primary-green);
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.2);
+}
+
+.product-compare-card.best {
+  border-color: #4caf50;
+  background: #e8f5e9;
+}
+
+.waste-income {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.dealer-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 4px solid var(--primary-green);
+}
+
+.money-saved-counter {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #000;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.money-saved-counter .amount {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.analytics-card {
+  border-left: 4px solid var(--primary-green);
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-card .stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.stat-card .stat-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--primary-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.farmer-id-display {
+  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.farmer-id-display .id {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: monospace;
+}
+
+.responsive-table {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    padding: 10px;
+  }
+  
+  .voice-assistant-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .weather-card .temp {
+    font-size: 3rem;
+  }
+  
+  .money-saved-counter .amount {
+    font-size: 2rem;
+  }
+}
+
+.nav-pills .nav-link.active {
+  background: var(--primary-green);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.form-select:focus, .form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.btn-close:focus {
+  box-shadow: none;
+}
+
+.toast {
+  border-radius: 10px;
+}
